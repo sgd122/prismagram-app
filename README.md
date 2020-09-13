@@ -11,3 +11,9 @@ Screens:
 - [ ] Photo Detail
 - [ ] Photo Comments (Challenge)
 - [ ] Photo Likes (Challenge)
+
+---
+
+# 설명
+
+- apollo-cache-persist : 폰에 데이터 저장
