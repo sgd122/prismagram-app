@@ -6,7 +6,7 @@ import Home from "../screens/Tabs/Home";
 import Notifications from "../screens/Tabs/Notifications";
 import Profile from "../screens/Tabs/Profile";
 import Search from "../screens/Tabs/Search";
-import stackFactory from "./StackFactory";
+import StackFactory from "./StackFactory";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +27,7 @@ const TabNavigation = () => {
     >
       <Tab.Screen
         name="Home"
-        component={stackFactory}
+        component={StackFactory}
         initialParams={{
           initialRoute: Home,
           customConfig: {
@@ -43,7 +43,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Search"
-        component={stackFactory}
+        component={StackFactory}
         initialParams={{
           initialRoute: Search,
           customConfig: {
@@ -64,7 +64,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Notifications"
-        component={stackFactory}
+        component={StackFactory}
         initialParams={{
           initialRoute: Notifications,
           customConfig: {
@@ -75,7 +75,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={stackFactory}
+        component={StackFactory}
         initialParams={{
           initialRoute: Profile,
           customConfig: {
