@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components";
 
 const View = styled.View`
@@ -9,8 +10,10 @@ const View = styled.View`
 
 const Text = styled.Text``;
 
-export default () => (
+export default ({ navigation }) => (
   <View>
-    <Text>TakePhoto</Text>
+    <TouchableOpacity onPress={() => navigation.navigate("UploadPhoto")}>
+      <Text>TakePhoto</Text>
+    </TouchableOpacity>
   </View>
 );

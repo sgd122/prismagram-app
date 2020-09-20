@@ -29,13 +29,14 @@ const TabNavigation = () => {
       <Tab.Screen
         name="Add"
         component={View}
-        listeners={{
+        listeners={({ navigation, route }) => ({
           tabPress: (e) => {
-            // e.preventDefault(); // Use this to navigate somewhere else
-            console.log("Foo tab bar button pressed");
+            e.preventDefault();
+            navigation.navigate("Photo");
           },
-        }}
+        })}
       />
+
       <Tab.Screen name="Notifications" component={Notifications} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>

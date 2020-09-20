@@ -9,11 +9,16 @@ const Stack = createStackNavigator();
 const MainNavigation = () => {
   return (
     <>
-      {/* <Stack.Navigator>
-        <TabNavigation />
-      </Stack.Navigator> */}
-      <TabNavigation />
-      {/* <PhotoNavigation /> */}
+      <Stack.Navigator
+        initialRouteName="Tab"
+        screenOptions={({ route, navigation }) => ({
+          // headerShown: false,
+        })}
+        mode="modal"
+      >
+        <Stack.Screen name="Tab" component={TabNavigation} />
+        <Stack.Screen name="Photo" component={PhotoNavigation} />
+      </Stack.Navigator>
     </>
   );
 };
