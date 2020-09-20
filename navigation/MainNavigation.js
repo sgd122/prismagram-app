@@ -12,7 +12,7 @@ const MainNavigation = () => {
       <Stack.Navigator
         initialRouteName="Tab"
         screenOptions={({ route, navigation }) => ({
-          // headerShown: false,
+          headerShown: false,
         })}
         mode="modal"
       >

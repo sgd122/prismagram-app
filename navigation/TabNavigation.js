@@ -1,13 +1,18 @@
 import * as React from "react";
-import { View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
-import Notifications from "../screens/Notifications";
-import Profile from "../screens/Profile";
-import Search from "../screens/Search";
+import Home from "../screens/Tabs/Home";
+import Notifications from "../screens/Tabs/Notifications";
+import Profile from "../screens/Tabs/Profile";
+import Search from "../screens/Tabs/Search";
+import stackFactory from "./StackFactory";
 
 const Tab = createBottomTabNavigator();
+
+const headerStyle = {
+  height: 80,
+};
 
 const TabNavigation = () => {
   return (
@@ -22,10 +27,31 @@ const TabNavigation = () => {
     >
       <Tab.Screen
         name="Home"
-        component={Home}
-        options={{ tabBarLabel: "Home" }}
+        component={stackFactory}
+        initialParams={{
+          initialRoute: Home,
+          customConfig: {
+            title: "Home",
+            headerRight: () => (
+              <TouchableOpacity>
+                <Text>Hello</Text>
+              </TouchableOpacity>
+            ),
+            headerStyle,
+          },
+        }}
       />
-      <Tab.Screen name="Search" component={Search} />
+      <Tab.Screen
+        name="Search"
+        component={stackFactory}
+        initialParams={{
+          initialRoute: Search,
+          customConfig: {
+            title: "Search",
+            headerStyle,
+          },
+        }}
+      />
       <Tab.Screen
         name="Add"
         component={View}
@@ -36,9 +62,28 @@ const TabNavigation = () => {
           },
         })}
       />
-
-      <Tab.Screen name="Notifications" component={Notifications} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Notifications"
+        component={stackFactory}
+        initialParams={{
+          initialRoute: Notifications,
+          customConfig: {
+            title: "Notifications",
+            headerStyle,
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={stackFactory}
+        initialParams={{
+          initialRoute: Profile,
+          customConfig: {
+            title: "Profile",
+            headerStyle,
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };
