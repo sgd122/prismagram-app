@@ -1,12 +1,12 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Tabs/Home";
 import Notifications from "../screens/Tabs/Notifications";
 import Profile from "../screens/Tabs/Profile";
 import Search from "../screens/Tabs/Search";
 import StackFactory from "./StackFactory";
+import MessagesLink from "../components/MessagesLink";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,11 +32,7 @@ const TabNavigation = () => {
           initialRoute: Home,
           customConfig: {
             title: "Home",
-            headerRight: () => (
-              <TouchableOpacity>
-                <Text>Hello</Text>
-              </TouchableOpacity>
-            ),
+            headerRight: () => <MessagesLink />,
             headerStyle,
           },
         }}

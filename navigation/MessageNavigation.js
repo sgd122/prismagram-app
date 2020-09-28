@@ -10,7 +10,7 @@ const MessageNavigation = () => {
     <Stack.Navigator
       initialRouteName="Message"
       screenOptions={({ route, navigation }) => ({
-        headerShown: false,
+        // headerShown: false,
       })}
     >
       <Stack.Screen name="Message" component={Message} />
