@@ -1,7 +1,9 @@
 import * as React from "react";
+import { Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
 import styled from "styled-components";
 import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
+import useInput from "../../hooks/useInput";
 
 const View = styled.View`
   justify-content: center;
@@ -9,9 +11,33 @@ const View = styled.View`
   flex: 1;
 `;
 
-export default () => (
-  <View>
-    <AuthInput value="" placeholder="Email" keyboardType="email-address" />
-    <AuthButton onPress={() => null} text={"Log In"} />
-  </View>
-);
+export default () => {
+  const emailInput = useInput("");
+  const handleLogin = () => {
+    const { value } = emailInput;
+    //Email 유효성 검사(regex)
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (value === "") {
+      return Alert.alert("Email can't be empty");
+    } else if (!value.includes("@") || !value.includes(".")) {
+      return Alert.alert("Please write an email");
+    } else if (!emailRegex.test(value)) {
+      return Alert.alert("That email is invalid");
+    }
+  };
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View>
+        <AuthInput
+          {...emailInput}
+          placeholder="Email"
+          keyboardType="email-address"
+          returnKeyType="send"
+          onEndEditing={handleLogin}
+          autoCorrect={false}
+        />
+        <AuthButton onPress={handleLogin} text={"Log In"} />
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
