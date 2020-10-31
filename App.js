@@ -64,6 +64,6 @@ export default function App() {
       </ThemeProvider>
     </ApolloProvider>
   ) : (
-    <AppLoading />
-  );
+      <AppLoading />
+    );
 }

@@ -21,7 +21,7 @@ export default ({ navigation, route }) => {
   const [confirmSecretMutation] = useMutation(CONFIRM_SECRET, {
     variables: {
       secret: confirmInput.value,
-      email: route.params.email
+      email: route.params ? route.params.email : ""
     }
   });
   const handleConfirm = async () => {
