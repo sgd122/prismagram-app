@@ -8,12 +8,13 @@ import Search from "../screens/Tabs/Search";
 import StackFactory from "./StackFactory";
 import MessagesLink from "../components/MessagesLink";
 import NavIcon from "../components/NavIcon";
+import { stackStyles } from "./config";
 
 const Tab = createBottomTabNavigator();
 
 const headerStyle = {
   height: 80,
-  backgroundColor: "#EFEEEF"
+  ...stackStyles
 };
 
 const TabNavigation = () => {
@@ -23,8 +24,8 @@ const TabNavigation = () => {
       tabBarOptions={
         {
           showLabel: false,
-          tabStyle: {
-            backgroundColor: "#EFEEEF"
+          style: {
+            ...stackStyles
           }
         }
       }
@@ -42,7 +43,6 @@ const TabNavigation = () => {
               />
             ),
             headerRight: () => <MessagesLink />,
-            headerStyle,
           },
         }}
         options={{
