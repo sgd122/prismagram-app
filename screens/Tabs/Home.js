@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useState } from "react";
+import { ScrollView, FlatList, RefreshControl } from "react-native";
 import styled from "styled-components";
 import { gql } from "apollo-boost";
 import Loader from "../../components/Loader";
@@ -40,12 +41,25 @@ const View = styled.View`
   flex: 1;
 `;
 
+const Text = styled.Text``;
+
 export default () => {
-  const { data, loading } = useQuery(FEED_QUERY);
+  const [refreshing, setRefreshing] = useState(false);
+  const { data, loading, refetch } = useQuery(FEED_QUERY);
+  const refresh = async () => {
+    try {
+      setRefreshing(true);
+      await refetch();
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setRefreshing(false);
+    }
+  }
   console.log(data, loading);
   return (
-    <View>
-      {loading ? <Loader /> : null}
-    </View>
+    <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
+      {loading ? <Loader /> : <Text>Hello</Text>}
+    </ScrollView>
   )
 };
