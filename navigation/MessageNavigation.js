@@ -11,6 +11,7 @@ const MessageNavigation = () => {
       initialRouteName="Message"
       screenOptions={({ route, navigation }) => ({
         // headerShown: false,
+        headerStyle: { backgroundColor: '#EFEEEF' },
       })}
     >
       <Stack.Screen name="Message" component={Message} />

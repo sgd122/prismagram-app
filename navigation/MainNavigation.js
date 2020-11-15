@@ -11,13 +11,13 @@ const MainNavigation = () => {
   return (
     <>
       <Stack.Navigator
-        initialRouteName="Tab"
+        initialRouteName="Home"
         screenOptions={({ route, navigation }) => ({
           headerShown: false,
         })}
         mode="modal"
       >
-        <Stack.Screen name="Tab" component={TabNavigation} />
+        <Stack.Screen name="Home" component={TabNavigation} />
         <Stack.Screen name="Photo" component={PhotoNavigation} />
         <Stack.Screen name="Message" component={MessageNavigation} />
       </Stack.Navigator>

@@ -24,6 +24,7 @@ export default () => {
         initialRouteName="Tab"
         screenOptions={({ route, navigation }) => ({
           // headerShown: false,
+          headerStyle: { backgroundColor: '#EFEEEF' },
         })}
       >
         <Stack.Screen name="Photo" component={PhotoNavigation} />

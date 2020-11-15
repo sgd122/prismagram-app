@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 
 const headerStyle = {
   height: 80,
+  backgroundColor: "#EFEEEF"
 };
 
 const TabNavigation = () => {
@@ -21,8 +22,10 @@ const TabNavigation = () => {
       initialRouteName="Home"
       tabBarOptions={
         {
-          // activeTintColor: "#e91e63",
           showLabel: false,
+          tabStyle: {
+            backgroundColor: "#EFEEEF"
+          }
         }
       }
     >
@@ -43,8 +46,9 @@ const TabNavigation = () => {
           },
         }}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ focused }) => (
             <NavIcon
+              focused={focused}
               name={Platform.OS === "ios" ? "ios-home" : "md-home"}
             />
           )
@@ -61,8 +65,9 @@ const TabNavigation = () => {
           },
         }}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ focused }) => (
             <NavIcon
+              focused={focused}
               name={Platform.OS === "ios" ? "ios-search" : "md-search"}
             />
           )
@@ -78,9 +83,11 @@ const TabNavigation = () => {
           },
         })}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ focused }) => (
             <NavIcon
+              focused={focused}
               name={Platform.OS === "ios" ? "ios-add" : "md-add"}
+              size={28}
             />
           )
         }}
@@ -96,9 +103,18 @@ const TabNavigation = () => {
           },
         }}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ focused }) => (
             <NavIcon
-              name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
+              focused={focused}
+              name={
+                Platform.OS === "ios"
+                  ? focused
+                    ? "ios-heart"
+                    : "ios-heart-empty"
+                  : focused
+                    ? "md-heart"
+                    : "md-heart-empty"
+              }
             />
           )
         }}
@@ -114,8 +130,9 @@ const TabNavigation = () => {
           },
         }}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ focused }) => (
             <NavIcon
+              focused={focused}
               name={Platform.OS === "ios" ? "ios-person" : "md-person"}
             />
           )
