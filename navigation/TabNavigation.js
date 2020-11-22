@@ -12,11 +12,6 @@ import { stackStyles } from "./config";
 
 const Tab = createBottomTabNavigator();
 
-const headerStyle = {
-  height: 80,
-  ...stackStyles
-};
-
 const TabNavigation = () => {
   return (
     <Tab.Navigator
@@ -61,8 +56,8 @@ const TabNavigation = () => {
           initialRoute: Search,
           customConfig: {
             title: "Search",
-            headerStyle,
           },
+
         }}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -99,7 +94,6 @@ const TabNavigation = () => {
           initialRoute: Notifications,
           customConfig: {
             title: "Notifications",
-            headerStyle,
           },
         }}
         options={{
@@ -126,7 +120,6 @@ const TabNavigation = () => {
           initialRoute: Profile,
           customConfig: {
             title: "Profile",
-            headerStyle,
           },
         }}
         options={{
