@@ -17,7 +17,7 @@ const SearchBar = ({ onChange, value, onSubmit }) => (
             }}
             returnKeyType="search"
             onChangeText={onChange}
-            onSubmitEditing={onSubmit}
+            onEndEditing={onSubmit}
             value={value}
             placeholder={"Search"}
             placeholderTextColor={styles.darkGreyColor}
@@ -30,4 +30,5 @@ SearchBar.propTypes = {
     value: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired
 };
+
 export default SearchBar;

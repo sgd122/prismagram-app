@@ -1,138 +1,147 @@
-import * as React from "react";
-import { View, Platform } from "react-native";
+import "react-native-gesture-handler";
+import React from "react";
+import { View, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
+import { Platform } from "react-native";
+import stackFactory from "./StackFactory";
 import Home from "../screens/Tabs/Home";
+import Search from "../screens/Tabs/Search";
 import Notifications from "../screens/Tabs/Notifications";
 import Profile from "../screens/Tabs/Profile";
-import Search from "../screens/Tabs/Search";
-import StackFactory from "./StackFactory";
-import MessagesLink from "../components/MessagesLink";
+import MessageLink from "../components/MessagesLink";
 import NavIcon from "../components/NavIcon";
-import { stackStyles } from "./config";
+import styles from "../styles";
+import Detail from "../screens/Detail";
+import UserDetail from "../screens/UserDetail";
 
-const Tab = createBottomTabNavigator();
+const TabNavigation = createBottomTabNavigator();
+const SearchStack = createStackNavigator();
+const HomeStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
 
-const TabNavigation = () => {
+const SearchStackScreen = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      tabBarOptions={
-        {
-          showLabel: false,
-          style: {
-            ...stackStyles
-          }
-        }
-      }
+    <SearchStack.Navigator
+      initialRouteName="Search"
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerTintColor: styles.blackColor,
+        headerTitle: "",
+      }}
     >
-      <Tab.Screen
-        name="Home"
-        component={StackFactory}
-        initialParams={{
-          initialRoute: Home,
-          customConfig: {
-            title: (
-              <NavIcon
-                name="logo-instagram"
-                size={36}
-              />
-            ),
-            headerRight: () => <MessagesLink />,
-          },
-        }}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <NavIcon
-              focused={focused}
-              name={Platform.OS === "ios" ? "ios-home" : "md-home"}
-            />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="Search"
-        component={StackFactory}
-        initialParams={{
-          initialRoute: Search,
-          customConfig: {
-            title: "Search",
-          },
+      <SearchStack.Screen name="Search" component={Search} />
+      <SearchStack.Screen name="Detail" component={Detail} />
+      <SearchStack.Screen name="UserDetail" component={UserDetail} options={{}} />
+    </SearchStack.Navigator>
+  );
+};
 
-        }}
+const HomeStackScreen = () => {
+  return (
+    <HomeStack.Navigator
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerTintColor: styles.blackColor,
+      }}
+    >
+      <HomeStack.Screen
+        name="Home"
+        component={Home}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <NavIcon
-              focused={focused}
-              name={Platform.OS === "ios" ? "ios-search" : "md-search"}
-            />
-          )
+          headerRight: () => <MessageLink />,
+          headerTitle: (
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+              <Image style={{ height: 30 }} resizeMode="contain" source={require("../assets/logo.png")} />
+            </View>
+          ),
         }}
       />
-      <Tab.Screen
+      <HomeStack.Screen name="UserDetail" component={UserDetail} options={({ route }) => ({ title: route.params.username })} />
+    </HomeStack.Navigator>
+  );
+};
+
+const ProfileStackScreen = () => {
+  return (
+    <ProfileStack.Navigator
+      initialRouteName="Search"
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerTintColor: styles.blackColor,
+        headerTitle: "Profile",
+      }}
+    >
+      <ProfileStack.Screen name="Profile" component={Profile} />
+      <ProfileStack.Screen name="Detail" component={Detail} />
+      <ProfileStack.Screen name="UserDetail" component={UserDetail} />
+    </ProfileStack.Navigator>
+  );
+};
+
+export default () => {
+  return (
+    <TabNavigation.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        showLabel: false,
+      }}
+    >
+      <TabNavigation.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <NavIcon focused={focused} name={Platform.OS === "ios" ? "ios-home" : "md-home"} />,
+        }}
+      />
+      <TabNavigation.Screen
+        name="Search"
+        component={SearchStackScreen}
+        options={{
+          tabBarIcon: ({ focused }) => <NavIcon focused={focused} name={Platform.OS === "ios" ? "ios-search" : "md-search"} />,
+        }}
+      />
+      <TabNavigation.Screen
         name="Add"
         component={View}
-        listeners={({ navigation, route }) => ({
+        listeners={({ navigation }) => ({
           tabPress: (e) => {
             e.preventDefault();
-            navigation.navigate("Photo");
+            navigation.navigate("PhotoNavigation");
           },
         })}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <NavIcon
-              focused={focused}
-              name={Platform.OS === "ios" ? "ios-add" : "md-add"}
-              size={28}
-            />
-          )
+          tabBarIcon: ({ focused }) => <NavIcon focused={focused} size={28} name={Platform.OS === "ios" ? "ios-add" : "md-add"} />,
         }}
       />
-      <Tab.Screen
+      <TabNavigation.Screen
         name="Notifications"
-        component={StackFactory}
+        component={stackFactory}
         initialParams={{
           initialRoute: Notifications,
           customConfig: {
             title: "Notifications",
+            headerStyle: {
+              height: 80,
+            },
           },
         }}
         options={{
           tabBarIcon: ({ focused }) => (
             <NavIcon
               focused={focused}
-              name={
-                Platform.OS === "ios"
-                  ? focused
-                    ? "ios-heart"
-                    : "ios-heart-empty"
-                  : focused
-                    ? "md-heart"
-                    : "md-heart-empty"
-              }
+              name={Platform.OS === "ios" ? (focused ? "ios-heart" : "ios-heart-empty") : focused ? "md-heart" : "md-heart-empty"}
             />
-          )
+          ),
         }}
       />
-      <Tab.Screen
+      <TabNavigation.Screen
         name="Profile"
-        component={StackFactory}
-        initialParams={{
-          initialRoute: Profile,
-          customConfig: {
-            title: "Profile",
-          },
-        }}
+        component={ProfileStackScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <NavIcon
-              focused={focused}
-              name={Platform.OS === "ios" ? "ios-person" : "md-person"}
-            />
-          )
+          tabBarIcon: ({ focused }) => <NavIcon focused={focused} name={Platform.OS === "ios" ? "ios-person" : "md-person"} />,
         }}
       />
-    </Tab.Navigator>
+    </TabNavigation.Navigator>
   );
 };
-
-export default TabNavigation;
