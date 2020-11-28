@@ -32,7 +32,7 @@ const SearchStackScreen = () => {
     >
       <SearchStack.Screen name="Search" component={Search} />
       <SearchStack.Screen name="Detail" component={Detail} />
-      <SearchStack.Screen name="UserDetail" component={UserDetail} options={{}} />
+      <SearchStack.Screen name="UserDetail" component={UserDetail} options={({ route }) => ({ title: route.params.username })} />
     </SearchStack.Navigator>
   );
 };
