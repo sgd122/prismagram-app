@@ -19,6 +19,7 @@ Screens:
 - [App Prisma](https://app.prisma.io/)
 - [Expo Google](https://docs.expo.io/versions/v39.0.0/sdk/google/)
 - [FB Developer](https://developers.facebook.com/apps/)
+- [Google Developer](https://console.developers.google.com/)
 - [React Navigation](https://reactnavigation.org/docs/getting-started)
 - [Vector Icons](https://icons.expo.fyi/)
 
