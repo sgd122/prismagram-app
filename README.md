@@ -2,8 +2,8 @@
 
 Screens:
 
-- [ ] Home
-- [ ] Search
+- [✅] Home
+- [✅] Search
 - [ ] Upload
 - [ ] Notifications (Challenge)
 - [ ] Profile

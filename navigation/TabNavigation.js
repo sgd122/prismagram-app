@@ -107,7 +107,7 @@ export default () => {
         listeners={({ navigation }) => ({
           tabPress: (e) => {
             e.preventDefault();
-            navigation.navigate("PhotoNavigation");
+            navigation.navigate("Photo");
           },
         })}
         options={{
