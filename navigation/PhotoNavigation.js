@@ -35,7 +35,7 @@ const PhotoTab = () => {
 
 export default () => {
   return (
-    <PhotoNavigation.Navigator screenOptions={{ headerStyle }}>
+    <PhotoNavigation.Navigator>
       <PhotoNavigation.Screen name="PhotoTab" component={PhotoTab} options={{ headerBackTitleVisible: false, headerTintColor: styles.blackColor, headerTitle: "사진 선택" }} />
       <PhotoNavigation.Screen name="UploadPhoto" component={UploadPhoto} options={{ headerBackTitleVisible: false, headerTintColor: styles.blackColor, headerTitle: "사진 업로드" }} />
     </PhotoNavigation.Navigator>
