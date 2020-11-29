@@ -12,8 +12,8 @@ const PhotoTabs = createMaterialTopTabNavigator();
 const PhotoNavigation = createStackNavigator();
 
 const headerStyle = {
-  // headerBackTitle: null,
-  // headerTintColor: styles.blackColor,
+  headerBackTitleVisible: false,
+  headerTintColor: styles.blackColor,
   ...stackStyles,
 };
 
@@ -24,20 +24,20 @@ const PhotoTab = () => {
       tabBarOptions={{
         indicatorStyle: { backgroundColor: styles.blackColor, marginBottom: 65 },
         labelStyle: { color: styles.blackColor, fontWeight: "600" },
-        style: { paddingBottom: 20, ...stackStyles },
+        style: { paddingBottom: 20 },
       }}
     >
       <PhotoTabs.Screen name="SelectPhoto" component={SelectPhoto} options={{ tabBarLabel: "Select" }} />
       <PhotoTabs.Screen name="TakePhoto" component={TakePhoto} options={{ tabBarLabel: "Take" }} />
-    </PhotoTabs.Navigator>
+    </PhotoTabs.Navigator >
   );
 };
 
 export default () => {
   return (
     <PhotoNavigation.Navigator screenOptions={{ headerStyle }}>
-      <PhotoNavigation.Screen name="PhotoTab" component={PhotoTab} options={{ headerTitle: "사진 선택" }} />
-      <PhotoNavigation.Screen name="UploadPhoto" component={UploadPhoto} />
+      <PhotoNavigation.Screen name="PhotoTab" component={PhotoTab} options={{ headerBackTitleVisible: false, headerTintColor: styles.blackColor, headerTitle: "사진 선택" }} />
+      <PhotoNavigation.Screen name="UploadPhoto" component={UploadPhoto} options={{ headerBackTitleVisible: false, headerTintColor: styles.blackColor, headerTitle: "사진 업로드" }} />
     </PhotoNavigation.Navigator>
   );
 };
