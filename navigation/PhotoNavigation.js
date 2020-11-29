@@ -12,8 +12,8 @@ const PhotoTabs = createMaterialTopTabNavigator();
 const PhotoNavigation = createStackNavigator();
 
 const headerStyle = {
-  headerBackTitle: null,
-  headerTintColor: styles.blackColor,
+  // headerBackTitle: null,
+  // headerTintColor: styles.blackColor,
   ...stackStyles,
 };
 
