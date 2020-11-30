@@ -76,18 +76,18 @@ export default ({ navigation, route }) => {
     try {
       setIsLoading(true);
       const {
-        data: { location }
+        data: { path }
       } = await axios.post("http://localhost:4000/api/upload", formData, {
         headers: {
           "content-type": "multipart/form-data"
         }
       });
-
+      console.log("::path::", path);
       const {
         data: { upload }
       } = await uploadMutation({
         variables: {
-          files: [location],
+          files: [path],
           caption: captionInput.value,
           location: locationInput.value
         }
