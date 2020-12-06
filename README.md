@@ -7,7 +7,7 @@ Screens:
 - [✅] Upload
 - [ ] Notifications (Challenge)
 - [✅] Profile
-- [ ] Edit Profile (Challenge)
+- [ ] Edit Profile & Referesh (Challenge)
 - [✅] Photo Detail
 - [ ] Photo Comments (Challenge)
 - [ ] Photo Likes (Challenge)

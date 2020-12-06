@@ -1,14 +1,18 @@
 import React from "react";
-import { TouchableOpacity, Image } from "react-native"
+import { TouchableOpacity, Image, View } from "react-native"
 import { withNavigation } from "@react-navigation/compat";
 import PropTypes from "prop-types";
 import constants from "../constants";
 
-const SquarePhoto = ({ navigation, files = [], id }) => (
+const style = {
+    width: constants.width / 3, 
+    height: constants.height / 6,    
+}
+const SquarePhoto = ({ navigation, files = [], id }) => (    
     <TouchableOpacity onPress={() => navigation.navigate("Detail", { id })}>
         <Image
             source={{ uri: files[0] && files[0].url }}
-            style={{ width: constants.width / 3, height: constants.height / 6 }}
+            style={style}
         />
     </TouchableOpacity>
 );
