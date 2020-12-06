@@ -54,13 +54,13 @@ const Text = styled.Text`
 `;
 
 export default ({ navigation, route }) => {
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState(false);  
   const photo = route.params?.photo;
   const captionInput = useInput("");
   const locationInput = useInput("");
-  const uploadMutation = useMutation(UPLOAD, {
+  const [uploadMutation] = useMutation(UPLOAD, {
     refetchQueries: () => [{ query: FEED_QUERY }]
-  });
+  }); 
   const handleSubmit = async () => {
     if (captionInput.value === "" || locationInput.value === "") {
       Alert.alert("All fields are required");
@@ -82,7 +82,6 @@ export default ({ navigation, route }) => {
           "content-type": "multipart/form-data"
         }
       });
-
       const {
         data: { upload }
       } = await uploadMutation({
@@ -96,7 +95,7 @@ export default ({ navigation, route }) => {
         navigation.navigate("Home");
       }
     } catch (e) {
-      Alert.alert("Cant upload", "Try later");
+      Alert.alert("Can't upload", "Try later");
     } finally {
       setIsLoading(false);
     }

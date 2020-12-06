@@ -4,11 +4,11 @@ Screens:
 
 - [✅] Home
 - [✅] Search
-- [ ] Upload
+- [✅] Upload
 - [ ] Notifications (Challenge)
-- [ ] Profile
+- [✅] Profile
 - [ ] Edit Profile (Challenge)
-- [ ] Photo Detail
+- [✅] Photo Detail
 - [ ] Photo Comments (Challenge)
 - [ ] Photo Likes (Challenge)
 
