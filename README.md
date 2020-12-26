@@ -14,6 +14,13 @@ Screens:
 
 ---
 
+## 배포관련
+
+- Frontend : netlify
+- Backend : Heroku
+
+---
+
 ## 참조
 
 - [App Prisma](https://app.prisma.io/)

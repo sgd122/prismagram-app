@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import constants from "../constants";
 
 const style = {
-    width: constants.width / 3, 
+    width: constants.width / 3.05, 
     height: constants.height / 6,    
+    margin: 1,    
 }
 const SquarePhoto = ({ navigation, files = [], id }) => (    
     <TouchableOpacity onPress={() => navigation.navigate("Detail", { id })}>
